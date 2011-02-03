@@ -1,0 +1,14 @@
+{
+  "name": "spreadsheet",
+  "description": "A CommonJS module for reading a Google Spreadsheet.",
+  "homepage": "http://github.com/publicclass/spreadsheet",
+  "version": "0.1.0",
+  "author": "Robert Sköld <robert@publicclass.se>",
+  "dependencies": {
+    "xml2js-expat": "0.1.2",
+    "request": ">= 1.0.0"
+  },
+  "keywords": ["google", "spreadsheets", "gdata"],
+  "scripts": { "test": "expresso test/test.js" },
+  "engines": { "node": ">= 0.2.0" }
+}
