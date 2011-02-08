@@ -8,6 +8,7 @@
     "xml2js-expat": "0.1.2",
     "request": ">= 1.0.0"
   },
+  "main": "./lib/spreadsheet",
   "keywords": ["google", "spreadsheets", "gdata"],
   "scripts": { "test": "expresso test/test.js" },
   "engines": { "node": ">= 0.2.0" }
