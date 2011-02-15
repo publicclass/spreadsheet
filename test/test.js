@@ -63,5 +63,74 @@ exports["eachCell"] = function(beforeExit){
 
 exports["Spreadsheet from URL"] = function(){
   var s = Spreadsheet.fromURL("https://spreadsheets.google.com/pub?key=0AkUwNDE9ftXvdGMxQ2hMS2oySG9HeV9OeUtkZ2xoM1E")
-  assert.notEqual(s,null,"Spreadsheet should not be null.")
+  assert.ok(s instanceof Spreadsheet)
+}
+
+exports["Worksheet from URL"] = function(){
+  var w = Spreadsheet.fromURL("https://spreadsheets.google.com/feeds/list/0AkUwNDE9ftXvdGMxQ2hMS2oySG9HeV9OeUtkZ2xoM1E/od6")
+  assert.ok(w instanceof Spreadsheet.Worksheet)
+}
+
+exports["Worksheet row by ID"] = function(beforeExit){
+  var spreadsheet = new Spreadsheet("0AkUwNDE9ftXvdGMxQ2hMS2oySG9HeV9OeUtkZ2xoM1E");
+  spreadsheet.worksheet("od6",function(err,w){
+    assert.ifError(err);
+    assert.ok(w instanceof Spreadsheet.Worksheet)
+    w.row("cpzh4",function(err,row,meta){
+      assert.ifError(err);
+      assert.ok(row instanceof Spreadsheet.Row)
+      assert.ok(meta instanceof Spreadsheet.Meta)
+      loaded = true;
+    })
+  })
+  
+  var loaded = false;
+  beforeExit(function(){
+    assert.ok(loaded)
+  })
+}
+
+exports["Worksheet cell by ID"] = function(beforeExit){
+  var spreadsheet = new Spreadsheet("0AkUwNDE9ftXvdGMxQ2hMS2oySG9HeV9OeUtkZ2xoM1E");
+  spreadsheet.worksheet("od6",function(err,w){
+    assert.ifError(err);
+    assert.ok(w instanceof Spreadsheet.Worksheet)
+    w.cell("R1C1",function(err,cell,meta){
+      assert.ifError(err);
+      assert.ok(cell instanceof Spreadsheet.Cell)
+      assert.ok(meta instanceof Spreadsheet.Meta)
+      loaded = true;
+    })
+  })
+  
+  var loaded = false;
+  beforeExit(function(){
+    assert.ok(loaded)
+  })
+}
+
+exports["Load Row from URL"] = function(beforeExit){
+  var loaded = false;
+  Spreadsheet.fromURL("https://spreadsheets.google.com/feeds/list/0AkUwNDE9ftXvdGMxQ2hMS2oySG9HeV9OeUtkZ2xoM1E/od6/public/values/cpzh4",function(err,row,meta){
+    assert.ifError(err);
+    assert.ok(row instanceof Spreadsheet.Row)
+    assert.ok(meta instanceof Spreadsheet.Meta)
+    loaded = true;
+  })
+  beforeExit(function(){
+    assert.ok(loaded);
+  })
+}
+
+exports["Load Cell from URL"] = function(beforeExit){
+  var loaded = false;
+  Spreadsheet.fromURL("https://spreadsheets.google.com/feeds/cells/0AkUwNDE9ftXvdGMxQ2hMS2oySG9HeV9OeUtkZ2xoM1E/od6/public/values/R1C1",function(err,cell,meta){
+    assert.ifError(err);
+    assert.ok(cell instanceof Spreadsheet.Cell)
+    assert.ok(meta instanceof Spreadsheet.Meta)
+    loaded = true;
+  })
+  beforeExit(function(){
+    assert.ok(loaded);
+  })
 }

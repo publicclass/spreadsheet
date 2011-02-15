@@ -44,7 +44,24 @@
 	})
 	
 	
+## History
 
+### 0.2.0
+
+* [Feature] Access row and cells directly by their IDs or URL through `Worksheet#cell(id,fn)`, `Worksheet#row(id,fn)` or using `Spreadsheet.fromURL(meta.id)` (meta.id is the meta you get in an `Worksheet#eachRow`- or `Worksheet.eachCell`-callback)
+
+### 0.1.2
+
+* [Feature] Error message when no rows were found.
+* [Bug] Fixed an issue with the NPM package. It couldn't find the library when installed through NPM.
+
+### 0.1.1
+
+* [Feature] Documentation
+
+### 0.1.0
+
+* Initial Google Spreadsheet implementation.
 
 ## License 
 

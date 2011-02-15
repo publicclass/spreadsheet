@@ -2,7 +2,7 @@
   "name": "spreadsheet",
   "description": "A CommonJS module for reading a Google Spreadsheet.",
   "homepage": "http://github.com/publicclass/spreadsheet",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Robert Sköld <robert@publicclass.se>",
   "dependencies": {
     "xml2js-expat": "0.1.2",
