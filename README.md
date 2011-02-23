@@ -46,6 +46,10 @@
 	
 ## History
 
+### 0.2.1
+
+* [Bug] Fixes for NPM 0.3+
+
 ### 0.2.0
 
 * [Feature] Access row and cells directly by their IDs or URL through `Worksheet#cell(id,fn)`, `Worksheet#row(id,fn)` or using `Spreadsheet.fromURL(meta.id)` (meta.id is the meta you get in an `Worksheet#eachRow`- or `Worksheet.eachCell`-callback)
