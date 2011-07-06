@@ -46,6 +46,11 @@
 	
 ## History
 
+### 0.3.0
+
+* [Feature] Changed to `open-uri` instead of `request`.
+* [Feature] Updated xml2js to 0.2.0.
+
 ### 0.2.1
 
 * [Bug] Fixes for NPM 0.3+
