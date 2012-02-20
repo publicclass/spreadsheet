@@ -44,6 +44,45 @@
 	})
 	
 	
+	// Load the worksheets to an array
+	sheet.sheetArray(function(err,spreadsheet, worksheets){
+		// Do stuff... like
+		//res.render('worksheets', {
+		//	spreadsheet : spreadsheet,
+		//	worksheets : worksheets
+		//});
+	});
+
+
+
+
+	if(wrk_id){
+		//import one sheet
+		sheet.worksheet(wrk_id,function(err,ws){
+			if(err) throw(err);
+			importSheet_(ws, true);
+		});
+	}else{
+		//import all sheets
+		sheet.worksheets(function(err,ws){
+			if(err)	throw(err);
+			importSheet_(ws);
+		});
+	}
+	
+	function importSheet_(ws, onlyOne)
+	{
+		// Each worksheet allows you to go through each row.
+		ws.eachRow(function(err,row,meta){
+			// `row` is an object with all the fields of that row.
+			// `meta` is an object like {index: 1, total: 2, id: "https://...", update: Date()}
+			//console.log(err, ws.spreadsheet.sheetCount, ws.index, meta.index, meta.total);
+			if(onlyOne || (ws.spreadsheet.sheetCount === ws.index && meta.index === meta.total)){
+				console.log('finished');
+			}
+		});
+	}
+	
 ## History
 
 ### 0.3.0
