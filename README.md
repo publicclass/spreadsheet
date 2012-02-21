@@ -45,7 +45,7 @@
 	
 	
 	// Load the worksheets to an array
-	sheet.sheetArray(function(err,spreadsheet, worksheets){
+	sheet.worksheetArray(function(err,spreadsheet, worksheets){
 		// Do stuff... like
 		//res.render('worksheets', {
 		//	spreadsheet : spreadsheet,
@@ -76,14 +76,25 @@
 		ws.eachRow(function(err,row,meta){
 			// `row` is an object with all the fields of that row.
 			// `meta` is an object like {index: 1, total: 2, id: "https://...", update: Date()}
-			//console.log(err, ws.spreadsheet.sheetCount, ws.index, meta.index, meta.total);
-			if(onlyOne || (ws.spreadsheet.sheetCount === ws.index && meta.index === meta.total)){
-				console.log('finished');
+			if(meta.index === meta.total){
+				//the last row
+			}
+			
+			if((onlyOne && meta.index === meta.total) || (ws.spreadsheet.sheetCount === ws.index && meta.index === meta.total)){
+				console.log('done');
 			}
 		});
 	}
 	
 ## History
+
+### added by baryon
+
+* [Feature] Add worksheetArray method.
+* [Feature] Add author, title, updated timestamp, sheetCount property for spreadsheet
+* [Feature] Add title and updated property for worksheet
+* [Bug] Fixes for empty cell, now return null when the cell is an empty object.
+* [Feature] Add some test cases for added method and properties.
 
 ### 0.3.0
 
